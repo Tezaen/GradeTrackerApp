@@ -12,6 +12,8 @@ public class UserLog {
 
     private String mUsername;
     private String mPassword;
+    private String mFirstname;
+    private String mLastname;
 
     public UserLog(String mUsername, String mPassword) {
         this.mUsername = mUsername;
@@ -40,5 +42,21 @@ public class UserLog {
 
     public void setPassword(String mPassword) {
         this.mPassword = mPassword;
+    }
+
+    public String getFirstname() {
+        return mFirstname;
+    }
+
+    public void setFirstname(String mFirstname) {
+        this.mFirstname = mFirstname;
+    }
+
+    public String getLastname() {
+        return mLastname;
+    }
+
+    public void setLastname(String mLastname) {
+        this.mLastname = mLastname;
     }
 }

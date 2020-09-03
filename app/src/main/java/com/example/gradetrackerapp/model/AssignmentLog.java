@@ -13,11 +13,27 @@ public class AssignmentLog {
     private String mAssignmentName;
     private int mAssignmentMaxScore;
     private int mAssignmentScore;
+    private String mDetails;
+    private String mAssignedDate;
+    private int mCourseId;
+    private String mDueDate;
 
-    public AssignmentLog(String mAssignmentName, int mAssignmentMaxScore, int mAssignmentScore){
+    public AssignmentLog(String mAssignmentName, int mAssignmentMaxScore, int mAssignmentScore, String mDetails, String mAssignedDate, int mCourseId, String mDueDate) {
         this.mAssignmentName = mAssignmentName;
         this.mAssignmentMaxScore = mAssignmentMaxScore;
         this.mAssignmentScore = mAssignmentScore;
+        this.mDetails = mDetails;
+        this.mAssignedDate = mAssignedDate;
+        this.mCourseId = mCourseId;
+        this.mDueDate = mDueDate;
+    }
+
+    public int getAssignmentId() {
+        return mAssignmentId;
+    }
+
+    public void setAssignmentId(int mAssignmentId) {
+        this.mAssignmentId = mAssignmentId;
     }
 
     public String getAssignmentName() {
@@ -42,5 +58,37 @@ public class AssignmentLog {
 
     public void setAssignmentScore(int mAssignmentScore) {
         this.mAssignmentScore = mAssignmentScore;
+    }
+
+    public String getDetails() {
+        return mDetails;
+    }
+
+    public void setDetails(String mDetails) {
+        this.mDetails = mDetails;
+    }
+
+    public String getAssignedDate() {
+        return mAssignedDate;
+    }
+
+    public void setAssignedDate(String mAssignedDate) {
+        this.mAssignedDate = mAssignedDate;
+    }
+
+    public int getCourseId() {
+        return mCourseId;
+    }
+
+    public void setCourseId(int mCourseId) {
+        this.mCourseId = mCourseId;
+    }
+
+    public String getDueDate() {
+        return mDueDate;
+    }
+
+    public void setDueDate(String mDueDate) {
+        this.mDueDate = mDueDate;
     }
 }
