@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Grade Tracker App</string>
+    <string name="login">Log In</string>
+    <string name="createAcc">Create Account</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
 </resources>
