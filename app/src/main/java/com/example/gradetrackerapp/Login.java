@@ -33,6 +33,7 @@ public class Login extends AppCompatActivity {
         mButton1 = findViewById(R.id.button1);
 
         // set listener to login button
+        //test to see if this works
         // when clicked will check if account exists
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
