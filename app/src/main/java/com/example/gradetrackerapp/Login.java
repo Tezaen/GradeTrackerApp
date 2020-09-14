@@ -114,5 +114,4 @@ public class Login extends AppCompatActivity {
             password.setTextColor(Color.RED);
         }
     }
-
 }
