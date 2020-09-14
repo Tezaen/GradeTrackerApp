@@ -1,6 +1,7 @@
 package com.example.gradetrackerapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,25 +12,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.gradetrackerapp.model.UserLog;
+import com.example.gradetrackerapp.model.db.AppDatabase;
+import com.example.gradetrackerapp.model.db.GradeTrackerDAO;
+
 public class Login extends AppCompatActivity {
-
-    boolean m1 =  true;
-    private static final String M1ISTRUE = "com.example.gradetrackerapp";
-
     // input texts and login button initiation
-    EditText mEditText1;
-    EditText mEditText2;
+    EditText username;
+    EditText password;
     Button mButton1;
-
+    UserLog mUser;
+    GradeTrackerDAO mDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        getDb();
         //adding input text and login button into initiated variables
-        mEditText1 = findViewById(R.id.usernameTxt);
-        mEditText2 = findViewById(R.id.passwordTxt);
+        username = findViewById(R.id.usernameTxt);
+        password = findViewById(R.id.passwordTxt);
         mButton1 = findViewById(R.id.button1);
 
         // set listener to login button
@@ -38,46 +40,79 @@ public class Login extends AppCompatActivity {
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEditText1.setTextColor(Color.BLACK);
-                mEditText2.setTextColor(Color.BLACK);
-                String un = mEditText1.getText().toString();
-                String pw = mEditText2.getText().toString();
-                CheckAccount inputUP = new CheckAccount(un, pw);
-                boolean bool_un = inputUP.checkUsername();
-                boolean bool_pw = inputUP.checkPassword();
-                toastMaker(bool_un, bool_pw);
+                username.setTextColor(Color.BLACK);
+                password.setTextColor(Color.BLACK);
+                String un = username.getText().toString();
+                String pw = password.getText().toString();
+
+                if (checkCredentials(un, pw)) {
+                    Intent intent = Menu.newIntent(Login.this, mUser.getUserId());
+                    startActivity(intent);
+                }
             }
         });
     }
 
-    // method that checks if password/username is correct
-    // pop up toast according to what correct/incorrect inputs were made
-    public void toastMaker(boolean bool_un, boolean bool_pw) {
-        if (bool_un && bool_pw) {
-            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
 
-            //intent new screen
-            Intent intent = SuccessPage.newIntent(Login.this, m1);
-            startActivity(intent);
+    public static Intent newIntent(Context context) {
+        Intent intent = new Intent(context, Login.class);
+        return intent;
+    }
 
-        } else if (!bool_un && !bool_pw) {
-            Toast.makeText(this, "Username & Password are incorrect", Toast.LENGTH_LONG).show();
-            mEditText1.setTextColor(Color.RED);
-            mEditText2.setTextColor(Color.RED);
+    private void getDb() {
+        mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
+                .allowMainThreadQueries()
+                .build()
+                .getGradeTrackerDAO();
+    }
 
-        } else if (!bool_un) {
-            Toast.makeText(this, "Username is incorrect", Toast.LENGTH_LONG).show();
-            mEditText1.setTextColor(Color.RED);
+    private boolean checkCredentials(String un, String pw) {
+        boolean validUn = checkValidUsername(un);
+        boolean validPw = checkValidPassword(pw);
 
+        toastMaker(validUn, validPw);
+
+        if (validPw && validUn) {
+            return true;
         } else {
-            Toast.makeText(this, "Password is incorrect", Toast.LENGTH_LONG).show();
-            mEditText2.setTextColor(Color.RED);
+            return false;
         }
     }
 
-    public static Intent newIntent(Context context, boolean m1) {
-        Intent intent = new Intent(context, Login.class);
-        intent.putExtra(M1ISTRUE,m1);
-        return intent;
+    private boolean checkValidUsername(String un) {
+        mUser = mDao.getUserByUsername(un);
+        if (mUser == null) {
+            return false;
+        }
+        return true;
     }
+
+    private boolean checkValidPassword(String pw) {
+        if (mUser.getPassword().equals(pw)) {
+            return true;
+        }
+        return false;
+    }
+
+    // method that checks if password/username is correct
+    // pop up toast according to what correct/incorrect inputs were made
+    private void toastMaker(boolean bool_un, boolean bool_pw) {
+        if (bool_un && bool_pw) {
+            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+
+        } else if (!bool_un && !bool_pw) {
+            Toast.makeText(this, "Username & Password are incorrect", Toast.LENGTH_LONG).show();
+            username.setTextColor(Color.RED);
+            password.setTextColor(Color.RED);
+
+        } else if (!bool_un) {
+            Toast.makeText(this, "Username is incorrect", Toast.LENGTH_LONG).show();
+            username.setTextColor(Color.RED);
+
+        } else {
+            Toast.makeText(this, "Password is incorrect", Toast.LENGTH_LONG).show();
+            password.setTextColor(Color.RED);
+        }
+    }
+
 }
