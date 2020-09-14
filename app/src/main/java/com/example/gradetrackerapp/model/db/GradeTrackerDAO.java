@@ -121,4 +121,6 @@ public interface GradeTrackerDAO {
 
     @Query("select * from " + AppDatabase.ENROLLED_TABLE)
     List<EnrolledLog> getAllEnrollment();
+
+
 }

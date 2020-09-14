@@ -68,8 +68,8 @@ public class CreateAccount extends AppCompatActivity {
     private void wiredUp() {
         usernameText = findViewById(R.id.usernameTxt);
         passwordText = findViewById(R.id.passwordTxt);
-        createBtn = findViewById(R.id.createAccBtn);
-        backBtn = findViewById(R.id.backBtn);
+        createBtn = findViewById(R.id.createBtn);
+        backBtn = findViewById(R.id.backToMainBtn);
     }
 
     //gives access to the DAO commands for querying
