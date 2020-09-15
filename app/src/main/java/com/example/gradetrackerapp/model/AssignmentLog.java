@@ -9,13 +9,12 @@ import com.example.gradetrackerapp.model.db.AppDatabase;
 public class AssignmentLog {
     @PrimaryKey(autoGenerate = true)
     private int mAssignmentId;
-
+    private int mCourseId;
     private String mAssignmentName;
     private int mAssignmentMaxScore;
     private int mAssignmentScore;
     private String mDetails;
     private String mAssignedDate;
-    private int mCourseId;
     private String mDueDate;
 
     public AssignmentLog(String mAssignmentName, int mAssignmentMaxScore, int mAssignmentScore, String mDetails, String mAssignedDate, int mCourseId, String mDueDate) {

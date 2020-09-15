@@ -11,15 +11,13 @@ import com.example.gradetrackerapp.model.GradeLog;
 import com.example.gradetrackerapp.model.UserLog;
 
 @Database(entities = {UserLog.class, CourseLog.class, AssignmentLog.class, GradeLog.class,
-        CategoryLog.class, EnrolledLog.class}, version = 4)
+        CategoryLog.class, EnrolledLog.class}, version = 5,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public static final String DB_NAME = "GRADETRACKER_DATABASE";
     public static final String USER_TABLE = "USERLOG_CLASS";
     public static final String COURSE_TABLE = "COURSELOG_CLASS";
     public static final String ASSIGNMENT_TABLE = "ASSIGNMENTLOG_CLASS";
-    public static final String GRADE_TABLE = "GRADELOG_CLASS";
-    public static final String CATEGORY_TABLE = "CATEGORYLOG_CLASS";
-    public static final String ENROLLED_TABLE = "ENROLLEDLOG_CLASS";
+
 
     public abstract GradeTrackerDAO getGradeTrackerDAO();
 }

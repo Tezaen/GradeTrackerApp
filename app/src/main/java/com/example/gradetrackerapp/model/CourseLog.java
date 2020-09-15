@@ -9,19 +9,28 @@ import com.example.gradetrackerapp.model.db.AppDatabase;
 public class CourseLog {
     @PrimaryKey(autoGenerate = true)
     private int mCourseId;
-
+    private int mUserId;
     private String mCourseName;
     private String mInstructor;
     private String mDesc;
     private String mStartDate;
     private String mEndDate;
 
-    public CourseLog(String courseName, String instructor, String desc, String startDate, String endDate){
+    public CourseLog(String courseName, String instructor, String desc, String startDate, String endDate, int mUserId){
         this.mCourseName = courseName;
         this.mInstructor = instructor;
         this.mDesc = desc;
         this.mStartDate = startDate;
         this.mEndDate = endDate;
+        this.mUserId = mUserId;
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
     }
 
     public int getCourseId() {

@@ -5,4 +5,15 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="goBack">Go Back</string>
+    <string name="Courses">Courses</string>
+    <string name="assignments">Assignments</string>
+    <string name="grades">Grades</string>
+    <string name="editCourse">Edit Course</string>
+    <string name="addCourse">Add Course</string>
+    <string name="professor">Professor</string>
+    <string name="courseName">Course Name</string>
+    <string name="assignmentName">Assignment Name</string>
+    <string name="grade">Grade</string>
+    <string name="title_acct">Account Login</string>
+    <string name="success">Login Successful!</string>
 </resources>

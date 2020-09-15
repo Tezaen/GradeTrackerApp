@@ -55,6 +55,9 @@ public interface GradeTrackerDAO {
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseName = :name")
     CourseLog getCourseByName(String name);
 
+    @Query("select * from " + AppDatabase.COURSE_TABLE + " where mUserId = :mUserId")
+    List<CourseLog> getCourseByUserID(String mUserId);
+
     //assignment DAO
     @Insert
     void insert(AssignmentLog... assignmentLogs);
@@ -74,51 +77,5 @@ public interface GradeTrackerDAO {
     @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentName = :name")
     List<AssignmentLog> getAssignmentByName(String name);
 
-    //Grade DAO
-    @Insert
-    void insert(GradeLog... gradeLogs);
 
-    @Update
-    void update(GradeLog... gradeLogs);
-
-    @Delete
-    void delete(GradeLog gradeLog);
-
-    @Query("select * from " + AppDatabase.GRADE_TABLE)
-    List<GradeLog> getAllGrades();
-
-    @Query("select * from " + AppDatabase.GRADE_TABLE + " where mGradeId = :gradeId")
-    GradeLog getGradeById(int gradeId);
-
-    @Query("select * from " + AppDatabase.GRADE_TABLE + " where mAssignmentId = :assignmentId")
-    List<GradeLog> getGradesByAssignmentId(int assignmentId);
-
-    //Category DAO
-    @Insert
-    void insert(CategoryLog... categoryLogs);
-
-    @Update
-    void update(CategoryLog... categoryLogs);
-
-    @Delete
-    void delete(CategoryLog categoryLog);
-
-    @Query("select * from " + AppDatabase.CATEGORY_TABLE)
-    List<CategoryLog> getAllCategories();
-
-    @Query("select * from " + AppDatabase.CATEGORY_TABLE + " where mCategoryId = :categoryId")
-    CategoryLog getCategoryById(int categoryId);
-
-    //Enrolled DAO
-    @Insert
-    void insert(EnrolledLog... enrolledLogs);
-
-    @Update
-    void update(EnrolledLog... enrolledLogs);
-
-    @Delete
-    void delete(EnrolledLog enrolledLog);
-
-    @Query("select * from " + AppDatabase.ENROLLED_TABLE)
-    List<EnrolledLog> getAllEnrollment();
 }
