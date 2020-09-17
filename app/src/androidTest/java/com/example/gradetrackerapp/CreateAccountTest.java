@@ -15,7 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
@@ -61,5 +63,21 @@ public class CreateAccountTest {
             pass = true;
         }
         assertFalse(pass);
+    }
+
+    @Test
+    public void verifyPasswordPassesTest() {
+        String enteredPassword = "baby_yoda_ftw";
+        UserLog mUser = new UserLog("din_djarin", "baby_yoda_ftw");
+        mDao.insert(mUser);
+        assertEquals(mUser.getPassword(), enteredPassword);
+    }
+
+    @Test
+    public void verifyPasswordFailsTest() {
+        String enteredPassword = "baeskar_4_ever";
+        UserLog mUser = new UserLog("din_djarin", "baby_yoda_ftw");
+        mDao.insert(mUser);
+        assertNotEquals(mUser.getPassword(), enteredPassword);
     }
 }
