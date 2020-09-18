@@ -51,5 +51,4 @@ public class CourseLog {
         this.mInstructor = mInstructor;
     }
 
-
 }

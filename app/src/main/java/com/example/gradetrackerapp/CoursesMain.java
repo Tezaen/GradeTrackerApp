@@ -35,7 +35,7 @@ public class CoursesMain extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_courses_main);
             AddButton = findViewById(R.id.Addbutton5);
-            backBtn = findViewById(R.id.courseMainToMain)
+            backBtn = findViewById(R.id.courseMainToMain);
             UserId = getIntent().getIntExtra(Menu.TAG,-1);
             mDao = AppDatabase.getInstance(getApplicationContext()).getGradeTrackerDAO();
             CreateItemList();
@@ -61,7 +61,7 @@ public class CoursesMain extends AppCompatActivity {
     }
 
     private void CreateItemList(){
-        List<CourseLog> courses = mDao.getCourseByUserId(UserId);
+        List<CourseLog> courses = mDao.getCoursesByUserID(UserId);
         for(CourseLog c : courses){
             mCourseItems.add(new CourseItem(c.getCourseName(), c.getInstructor()));
         }

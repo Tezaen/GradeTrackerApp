@@ -53,7 +53,7 @@ public interface GradeTrackerDAO {
     CourseLog getCourseByName(String name, int userId);
 
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mUserId = :mUserId")
-    List<CourseLog> getCourseByUserID(int mUserId);
+    List<CourseLog> getCoursesByUserID(int mUserId);
 
     //assignment DAO
     @Insert
@@ -79,4 +79,5 @@ public interface GradeTrackerDAO {
 
     @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mCourseName = :name and mUserId = :userId")
     List<AssignmentLog> getAssignmentByCourseName(String name, int userId);
+
 }

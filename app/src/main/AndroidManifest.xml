@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AssignmentMain"></activity>
+        <activity android:name=".GradesMain"></activity>
+        <activity android:name=".AssignmentMain" />
         <activity android:name=".AddAssignment" />
         <activity android:name=".EditAssignment" />
         <activity android:name=".EditCourse" />

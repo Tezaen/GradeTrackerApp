@@ -41,15 +41,15 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        //link to grades page
-//        button3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Menu.this, CoursesMain.class);
-//                intent.putExtra(TAG, UserId);
-//                startActivity(intent);
-//            }
-//        });
+        //link to grades page
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Menu.this, GradesMain.class);
+                intent.putExtra(TAG, UserId);
+                startActivity(intent);
+            }
+        });
     }
 
     public static Intent newIntent(Context c, int userId) {
