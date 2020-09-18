@@ -70,7 +70,7 @@ public class CreateAccount extends AppCompatActivity {
         usernameText = findViewById(R.id.usernameTxt);
         passwordText = findViewById(R.id.passwordTxt);
         createBtn = findViewById(R.id.createBtn);
-        backBtn = findViewById(R.id.backBtn);
+        backBtn = findViewById(R.id.backToMainBtn);
     }
 
     //gives access to the DAO commands for querying
