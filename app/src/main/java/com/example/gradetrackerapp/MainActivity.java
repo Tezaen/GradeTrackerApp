@@ -9,7 +9,7 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button loginBtn, createBtn;
+    private Button loginBtn, createBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

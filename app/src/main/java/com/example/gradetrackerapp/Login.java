@@ -79,13 +79,16 @@ public class Login extends AppCompatActivity {
     // Specifically checks if username exist
     private boolean checkValidUsername(String un) {
         mUser = mDao.getUserByUsername(un);
-        return mUser != null;
+         if (mUser == null) {
+            return false;
+        }
+        return true;
     }
 
     // Specifically check if password is associated with username given
     private boolean checkValidPassword(String pw) {
-        if (mUser != null) {
-            return mUser.getPassword().equals(pw);
+        if (mUser.getPassword().equals(pw)) {
+            return true;
         }
         return false;
     }

@@ -7,10 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.gradetrackerapp.model.AssignmentLog;
-import com.example.gradetrackerapp.model.CategoryLog;
 import com.example.gradetrackerapp.model.CourseLog;
-import com.example.gradetrackerapp.model.EnrolledLog;
-import com.example.gradetrackerapp.model.GradeLog;
 import com.example.gradetrackerapp.model.UserLog;
 
 import java.util.List;
@@ -52,8 +49,11 @@ public interface GradeTrackerDAO {
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseId = :courseId")
     CourseLog getCourseById(int courseId);
 
-    @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseName = :name")
-    CourseLog getCourseByName(String name);
+    @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseName = :name and mUserId = :userId")
+    CourseLog getCourseByNameAndId(String name, int userId);
+
+    @Query("select * from " + AppDatabase.COURSE_TABLE + " where mUserId = :mUserId")
+    List<CourseLog> getCoursesByUserID(int mUserId);
 
     //assignment DAO
     @Insert
@@ -71,56 +71,13 @@ public interface GradeTrackerDAO {
     @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentId = :assignmentId")
     AssignmentLog getAssignmentById(int assignmentId);
 
-    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentName = :name")
-    List<AssignmentLog> getAssignmentByName(String name);
+    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentName = :name and mUserId = :userId")
+    AssignmentLog getAssignmentByName(String name, int userId);
 
-    //Grade DAO
-    @Insert
-    void insert(GradeLog... gradeLogs);
+    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mUserId = :userId")
+    List<AssignmentLog> getAssignmentByUser(int userId);
 
-    @Update
-    void update(GradeLog... gradeLogs);
-
-    @Delete
-    void delete(GradeLog gradeLog);
-
-    @Query("select * from " + AppDatabase.GRADE_TABLE)
-    List<GradeLog> getAllGrades();
-
-    @Query("select * from " + AppDatabase.GRADE_TABLE + " where mGradeId = :gradeId")
-    GradeLog getGradeById(int gradeId);
-
-    @Query("select * from " + AppDatabase.GRADE_TABLE + " where mAssignmentId = :assignmentId")
-    List<GradeLog> getGradesByAssignmentId(int assignmentId);
-
-    //Category DAO
-    @Insert
-    void insert(CategoryLog... categoryLogs);
-
-    @Update
-    void update(CategoryLog... categoryLogs);
-
-    @Delete
-    void delete(CategoryLog categoryLog);
-
-    @Query("select * from " + AppDatabase.CATEGORY_TABLE)
-    List<CategoryLog> getAllCategories();
-
-    @Query("select * from " + AppDatabase.CATEGORY_TABLE + " where mCategoryId = :categoryId")
-    CategoryLog getCategoryById(int categoryId);
-
-    //Enrolled DAO
-    @Insert
-    void insert(EnrolledLog... enrolledLogs);
-
-    @Update
-    void update(EnrolledLog... enrolledLogs);
-
-    @Delete
-    void delete(EnrolledLog enrolledLog);
-
-    @Query("select * from " + AppDatabase.ENROLLED_TABLE)
-    List<EnrolledLog> getAllEnrollment();
-
+    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mCourseName = :name and mUserId = :userId")
+    List<AssignmentLog> getAssignmentByCourseName(String name, int userId);
 
 }
