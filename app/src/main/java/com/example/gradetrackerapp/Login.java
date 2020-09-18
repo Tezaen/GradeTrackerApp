@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity {
         mButton1 = findViewById(R.id.button1);
 
         // set listener to login button
-        //test to see if this works
+        // test to see if this works
         // when clicked will check if account exists
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,39 +66,34 @@ public class Login extends AppCompatActivity {
                 .getGradeTrackerDAO();
     }
 
-    private boolean checkCredentials(String un, String pw) {
+    // method that checks if password/username is correct
+    public boolean checkCredentials(String un, String pw) {
         boolean validUn = checkValidUsername(un);
         boolean validPw = checkValidPassword(pw);
 
         toastMaker(validUn, validPw);
 
-        if (validPw && validUn) {
-            return true;
-        } else {
-            return false;
-        }
+        return validPw && validUn;
     }
 
+    // Specifically checks if username exist
     private boolean checkValidUsername(String un) {
         mUser = mDao.getUserByUsername(un);
-        if (mUser == null) {
-            return false;
-        }
-        return true;
+        return mUser != null;
     }
 
+    // Specifically check if password is associated with username given
     private boolean checkValidPassword(String pw) {
-        if (mUser.getPassword().equals(pw)) {
-            return true;
+        if (mUser != null) {
+            return mUser.getPassword().equals(pw);
         }
         return false;
     }
 
-    // method that checks if password/username is correct
     // pop up toast according to what correct/incorrect inputs were made
     private void toastMaker(boolean bool_un, boolean bool_pw) {
         if (bool_un && bool_pw) {
-            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Log In Successful", Toast.LENGTH_LONG).show();
 
         } else if (!bool_un && !bool_pw) {
             Toast.makeText(this, "Username & Password are incorrect", Toast.LENGTH_LONG).show();
