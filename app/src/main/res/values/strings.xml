@@ -16,4 +16,8 @@
     <string name="grade">Grade</string>
     <string name="title_acct">Account Login</string>
     <string name="success">Login Successful!</string>
+    <string name="addAssignment">Add Assignment</string>
+    <string name="editAssignment">Edit Assignment</string>
+    <string name="AssignmentName">Assignment Name</string>
+    <string name="Grade">Grade</string>
 </resources>

@@ -77,6 +77,7 @@ public class CreateAccount extends AppCompatActivity {
     private void getDb() {
         mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build()
                 .getGradeTrackerDAO();
     }

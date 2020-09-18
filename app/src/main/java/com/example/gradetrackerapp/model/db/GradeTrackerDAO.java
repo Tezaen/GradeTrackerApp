@@ -7,10 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.gradetrackerapp.model.AssignmentLog;
-import com.example.gradetrackerapp.model.CategoryLog;
 import com.example.gradetrackerapp.model.CourseLog;
-import com.example.gradetrackerapp.model.EnrolledLog;
-import com.example.gradetrackerapp.model.GradeLog;
 import com.example.gradetrackerapp.model.UserLog;
 
 import java.util.List;
@@ -52,11 +49,11 @@ public interface GradeTrackerDAO {
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseId = :courseId")
     CourseLog getCourseById(int courseId);
 
-    @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseName = :name")
-    CourseLog getCourseByName(String name);
+    @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseName = :name and mUserId = :userId")
+    CourseLog getCourseByName(String name, int userId);
 
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mUserId = :mUserId")
-    List<CourseLog> getCourseByUserID(String mUserId);
+    List<CourseLog> getCourseByUserID(int mUserId);
 
     //assignment DAO
     @Insert
@@ -74,8 +71,12 @@ public interface GradeTrackerDAO {
     @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentId = :assignmentId")
     AssignmentLog getAssignmentById(int assignmentId);
 
-    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentName = :name")
-    List<AssignmentLog> getAssignmentByName(String name);
+    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mAssignmentName = :name and mUserId = :userId")
+    AssignmentLog getAssignmentByName(String name, int userId);
 
+    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mUserId = :userId")
+    List<AssignmentLog> getAssignmentByUser(int userId);
 
+    @Query("select * from " + AppDatabase.ASSIGNMENT_TABLE + " where mCourseName = :name and mUserId = :userId")
+    List<AssignmentLog> getAssignmentByCourseName(String name, int userId);
 }
