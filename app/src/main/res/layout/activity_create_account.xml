@@ -4,28 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CreateAccount">
+    tools:context=".CreateAccount"
+    android:background="@drawable/gradient_background3">
 
     <TextView
         android:id="@+id/createAccTxt"
-        android:layout_width="181dp"
-        android:layout_height="67dp"
+        android:layout_width="303dp"
+        android:layout_height="97dp"
         android:layout_marginTop="104dp"
+        android:fontFamily="@font/ubuntu_bold"
         android:gravity="center"
         android:text="@string/createAcc"
-        android:textSize="24sp"
+        android:textColor="#330867"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/usernameTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="92dp"
+        android:layout_width="270dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
+        android:fontFamily="@font/ubuntu_bold"
         android:hint="@string/username"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,22 +37,29 @@
 
     <EditText
         android:id="@+id/passwordTxt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
+        android:layout_width="270dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
+        android:fontFamily="@font/ubuntu_bold"
         android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameTxt" />
 
     <Button
         android:id="@+id/createBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="247dp"
+        android:layout_height="64dp"
         android:layout_marginTop="64dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/ubuntu_bold"
         android:text="@string/createAcc"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
@@ -62,5 +73,10 @@
         android:layout_marginTop="36dp"
         android:text="@string/goBack"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="@font/ubuntu_bold"
+        android:textAllCaps="false"
+        android:background="@drawable/custom_button"
+        android:textColor="#ffffff"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
