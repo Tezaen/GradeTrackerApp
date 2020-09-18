@@ -17,7 +17,7 @@ import com.example.gradetrackerapp.model.db.GradeTrackerDAO;
 public class CreateAccount extends AppCompatActivity {
 
     EditText usernameText, passwordText;
-    Button createBtn, backBtn;
+    private Button createBtn, backBtn;
     GradeTrackerDAO mDao;
     UserLog newUser;
 
@@ -27,6 +27,7 @@ public class CreateAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
         wiredUp();
         getDb();
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +77,7 @@ public class CreateAccount extends AppCompatActivity {
     private void getDb() {
         mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build()
                 .getGradeTrackerDAO();
     }
