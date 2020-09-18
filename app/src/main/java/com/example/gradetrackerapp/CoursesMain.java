@@ -22,12 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CoursesMain extends AppCompatActivity {
-        private Button AddButton;
+        private Button AddButton, backBtn;
         private RecyclerView mRecyclerView;
         private CourseItemAdapter mCourseItemAdapter;
         private RecyclerView.LayoutManager mLayoutManager;
         private ArrayList<CourseItem> mCourseItems = new ArrayList<>();
-        private int Userid;
+        private int UserId;
         GradeTrackerDAO mDao;
 
         @Override
@@ -35,22 +35,33 @@ public class CoursesMain extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_courses_main);
             AddButton = findViewById(R.id.Addbutton5);
-            Userid = getIntent().getIntExtra(Menu.TAG,-1);
+            backBtn = findViewById(R.id.courseMainToMain)
+            UserId = getIntent().getIntExtra(Menu.TAG,-1);
             mDao = AppDatabase.getInstance(getApplicationContext()).getGradeTrackerDAO();
             CreateItemList();
             RecyclerViewBuild();
+
+            backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(CoursesMain.this, Menu.class);
+                    intent.putExtra(Menu.TAG, UserId);
+                    startActivity(intent);
+                }
+            });
+
             AddButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(CoursesMain.this, AddCourse.class);
-                    intent.putExtra(Menu.TAG, Userid);
+                    intent.putExtra(Menu.TAG, UserId);
                     startActivity(intent);
                 }
             });
     }
 
     private void CreateItemList(){
-        List<CourseLog> courses = mDao.getCourseByUserID(Userid);
+        List<CourseLog> courses = mDao.getCourseByUserId(UserId);
         for(CourseLog c : courses){
             mCourseItems.add(new CourseItem(c.getCourseName(), c.getInstructor()));
         }
@@ -69,17 +80,17 @@ public class CoursesMain extends AppCompatActivity {
         mCourseItemAdapter.setOnItemClickListener(new CourseItemAdapter.OnItemClickedListener() {
             @Override
             public void onEditClick(int position) {
-                CourseLog CourseId = mDao.getCourseByName(mCourseItems.get(position).getCourseName(), Userid);
+                CourseLog CourseId = mDao.getCourseByName(mCourseItems.get(position).getCourseName(), UserId);
                 Intent intent = new Intent(CoursesMain.this, EditCourse.class);
                 intent.putExtra("id", CourseId.getCourseId());
-                intent.putExtra(Menu.TAG, Userid);
+                intent.putExtra(Menu.TAG, UserId);
                 startActivity(intent);
             }
 
             @Override
             public void onDelete(int position) {
-                CourseLog deleteCourse = mDao.getCourseByName( mCourseItems.get(position).getCourseName(), Userid);
-                List<AssignmentLog> log = mDao.getAssignmentByCourseName(deleteCourse.getCourseName(), Userid);
+                CourseLog deleteCourse = mDao.getCourseByName( mCourseItems.get(position).getCourseName(), UserId);
+                List<AssignmentLog> log = mDao.getAssignmentByCourseName(deleteCourse.getCourseName(), UserId);
                 for(AssignmentLog l : log){
                     mDao.delete(l);
                 }

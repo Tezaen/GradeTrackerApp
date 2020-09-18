@@ -24,12 +24,12 @@ import java.util.List;
 
 public class AssignmentMain extends AppCompatActivity {
 
-    private Button AddButton;
+    private Button AddButton, backBtn;
     private RecyclerView mRecyclerView;
     private AssignmentItemAdapter mAssignmentItemAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<AssignmentItem> mAssignmentItems = new ArrayList<>();
-    private int Userid;
+    private int UserId;
     private int courseId;
     GradeTrackerDAO mDao;
 
@@ -38,7 +38,8 @@ public class AssignmentMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignment_main);
         AddButton = findViewById(R.id.AddAssignmentButton);
-        Userid = getIntent().getIntExtra(Menu.TAG,-1);
+        backBtn = findViewById(R.id.assignMainToMain);
+        UserId = getIntent().getIntExtra(Menu.TAG,-1);
         mDao = AppDatabase.getInstance(getApplicationContext()).getGradeTrackerDAO();
         CreateItemList();
         RecyclerViewBuild();
@@ -46,14 +47,22 @@ public class AssignmentMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AssignmentMain.this, AddAssignment.class);
-                intent.putExtra(Menu.TAG, Userid);
+                intent.putExtra(Menu.TAG, UserId);
+                startActivity(intent);
+            }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AssignmentMain.this, Menu.class);
+                intent.putExtra(Menu.TAG, UserId);
                 startActivity(intent);
             }
         });
     }
 
     private void CreateItemList(){
-        List<AssignmentLog> assignmentLogs = mDao.getAssignmentByUser(Userid);
+        List<AssignmentLog> assignmentLogs = mDao.getAssignmentByUser(UserId);
         for(AssignmentLog c : assignmentLogs){
             mAssignmentItems.add(new AssignmentItem(c.getCourseName(), c.getAssignmentName(), c.getAssignmentScore()));
         }
@@ -72,16 +81,16 @@ public class AssignmentMain extends AppCompatActivity {
         mAssignmentItemAdapter.setOnItemClickListener(new AssignmentItemAdapter.OnItemClickedListener() {
             @Override
             public void onEditClick(int position) {
-                AssignmentLog AssignmentId = mDao.getAssignmentByName(mAssignmentItems.get(position).getAssignmentName(), Userid);
+                AssignmentLog AssignmentId = mDao.getAssignmentByName(mAssignmentItems.get(position).getAssignmentName(), UserId);
                 Intent intent = new Intent(AssignmentMain.this, EditAssignment.class);
                 intent.putExtra("id", AssignmentId.getAssignmentId());
-                intent.putExtra(Menu.TAG, Userid);
+                intent.putExtra(Menu.TAG, UserId);
                 startActivity(intent);
             }
 
             @Override
             public void onDelete(int position) {
-                AssignmentLog deleteAssignment = mDao.getAssignmentByName( mAssignmentItems.get(position).getAssignmentName(), Userid);
+                AssignmentLog deleteAssignment = mDao.getAssignmentByName( mAssignmentItems.get(position).getAssignmentName(), UserId);
                 mDao.delete(deleteAssignment);
                 mAssignmentItems.remove(position);
                 mAssignmentItemAdapter.notifyItemRemoved(position);

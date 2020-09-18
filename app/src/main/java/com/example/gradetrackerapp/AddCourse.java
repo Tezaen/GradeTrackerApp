@@ -15,7 +15,7 @@ import com.example.gradetrackerapp.model.db.AppDatabase;
 import com.example.gradetrackerapp.model.db.GradeTrackerDAO;
 
 public class AddCourse extends AppCompatActivity {
-    private Button btn;
+    private Button btn, backBtn;
     private EditText cName;
     private EditText profName;
     private int UserId;
@@ -26,9 +26,19 @@ public class AddCourse extends AppCompatActivity {
         setContentView(R.layout.activity_add_course);
         mDao = AppDatabase.getInstance(getApplicationContext()).getGradeTrackerDAO();
         btn = findViewById(R.id.button6);
+        backBtn = findViewById(R.id.addCourseBack);
         cName = findViewById(R.id.editTextTextPersonName);
         profName = findViewById(R.id.editTextTextPersonName2);
         UserId = getIntent().getIntExtra(Menu.TAG,-1);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddCourse.this, CoursesMain.class);
+                intent.putExtra(Menu.TAG, UserId);
+                startActivity(intent);
+            }
+        });
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

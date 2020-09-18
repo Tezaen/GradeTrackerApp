@@ -19,7 +19,7 @@ import java.util.List;
 
 public class EditCourse extends AppCompatActivity {
 
-        private Button btn;
+        private Button btn, backBtn;
         private EditText cName;
         private EditText profName;
         private int UserId;
@@ -31,6 +31,7 @@ public class EditCourse extends AppCompatActivity {
             setContentView(R.layout.activity_edit_course);
             mDao = AppDatabase.getInstance(getApplicationContext()).getGradeTrackerDAO();
             btn = findViewById(R.id.button7);
+            backBtn = findViewById(R.id.editToCourseMain);
             cName = findViewById(R.id.editTextTextPersonName3);
             profName = findViewById(R.id.editTextTextPersonName4);
             UserId = getIntent().getIntExtra(Menu.TAG,-1);
@@ -39,6 +40,16 @@ public class EditCourse extends AppCompatActivity {
             CourseLog newLog = mDao.getCourseById(Id);
             cName.setText(log.getCourseName());
             profName.setText(log.getInstructor());
+
+            backBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(EditCourse.this, CoursesMain.class);
+                    intent.putExtra(Menu.TAG, UserId);
+                    startActivity(intent);
+                }
+            });
+
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
