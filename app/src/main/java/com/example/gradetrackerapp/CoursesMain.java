@@ -80,7 +80,7 @@ public class CoursesMain extends AppCompatActivity {
         mCourseItemAdapter.setOnItemClickListener(new CourseItemAdapter.OnItemClickedListener() {
             @Override
             public void onEditClick(int position) {
-                CourseLog CourseId = mDao.getCourseByName(mCourseItems.get(position).getCourseName(), UserId);
+                CourseLog CourseId = mDao.getCourseByNameAndId(mCourseItems.get(position).getCourseName(), UserId);
                 Intent intent = new Intent(CoursesMain.this, EditCourse.class);
                 intent.putExtra("id", CourseId.getCourseId());
                 intent.putExtra(Menu.TAG, UserId);
@@ -89,7 +89,7 @@ public class CoursesMain extends AppCompatActivity {
 
             @Override
             public void onDelete(int position) {
-                CourseLog deleteCourse = mDao.getCourseByName( mCourseItems.get(position).getCourseName(), UserId);
+                CourseLog deleteCourse = mDao.getCourseByNameAndId( mCourseItems.get(position).getCourseName(), UserId);
                 List<AssignmentLog> log = mDao.getAssignmentByCourseName(deleteCourse.getCourseName(), UserId);
                 for(AssignmentLog l : log){
                     mDao.delete(l);

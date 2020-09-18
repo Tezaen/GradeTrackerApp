@@ -50,7 +50,7 @@ public interface GradeTrackerDAO {
     CourseLog getCourseById(int courseId);
 
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mCourseName = :name and mUserId = :userId")
-    CourseLog getCourseByName(String name, int userId);
+    CourseLog getCourseByNameAndId(String name, int userId);
 
     @Query("select * from " + AppDatabase.COURSE_TABLE + " where mUserId = :mUserId")
     List<CourseLog> getCoursesByUserID(int mUserId);

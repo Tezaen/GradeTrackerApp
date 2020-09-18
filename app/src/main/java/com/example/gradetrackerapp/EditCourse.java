@@ -53,7 +53,7 @@ public class EditCourse extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    CourseLog log2 = mDao.getCourseByName(cName.getText().toString(), UserId);
+                    CourseLog log2 = mDao.getCourseByNameAndId(cName.getText().toString(), UserId);
                     newLog.setInstructor(profName.getText().toString());
                     newLog.setCourseName(cName.getText().toString());
                     //checks if the user did not change the course name

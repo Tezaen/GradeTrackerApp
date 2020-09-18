@@ -48,7 +48,7 @@ public class AddAssignment extends AppCompatActivity {
             public void onClick(View v) {
                 //check to see if the editTexts are empty
                 AssignmentLog log = mDao.getAssignmentByName(assignmentName.getText().toString(), UserId);
-                CourseLog test = mDao.getCourseByName(courseName.getText().toString(), UserId);
+                CourseLog test = mDao.getCourseByNameAndId(courseName.getText().toString(), UserId);
                 if(test != null){
                     if(log == null){
                         int container = 0;
