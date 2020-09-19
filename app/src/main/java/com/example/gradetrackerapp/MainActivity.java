@@ -37,6 +37,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * This sets buttons to their respective elements in the layout xml file
+     */
     private void wiredUp() {
         loginBtn = findViewById(R.id.loginBtn);
         createBtn = findViewById(R.id.createAccBtn);

@@ -46,7 +46,9 @@ public class AddAssignment extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //check to see if the editTexts are empty
+                /**
+                 * check to see if the editTexts are empty
+                 */
                 AssignmentLog log = mDao.getAssignmentByName(assignmentName.getText().toString(), UserId);
                 CourseLog test = mDao.getCourseByNameAndId(courseName.getText().toString(), UserId);
                 if(test != null){

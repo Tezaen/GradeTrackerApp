@@ -62,12 +62,18 @@ public class EditAssignment extends AppCompatActivity {
                 }catch (NumberFormatException e){
                     Toast.makeText(getApplicationContext(),"Grade must be a number not a string", Toast.LENGTH_LONG).show();
                 }
+                /**
+                 * checks if user didnt changed assignment name
+                 */
                 if(log.getAssignmentName().equals(assignmentName.getText().toString())){
                     mDao.update(log);
                     Intent intent = new Intent(EditAssignment.this, AssignmentMain.class);
                     intent.putExtra(Menu.TAG, UserId);
                     startActivity(intent);
                 }else{
+                    /**
+                     * if they did change course name
+                     */
                     if(log2 == null){
                         mDao.update(log);
                         Intent intent = new Intent(EditAssignment.this, AssignmentMain.class);

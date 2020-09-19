@@ -49,11 +49,18 @@ public class GradesMain extends AppCompatActivity {
         });
     }
 
+    /**
+     * This sets buttons to their respective elements in the layout xml file
+     */
+
     private void wired() {
         backBtn = findViewById(R.id.gradesToMenu);
         gradesView = findViewById(R.id.gradesView);
     }
 
+    /**
+     * Builds the Room DB for DAO
+     */
     private void getDb() {
         dao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
