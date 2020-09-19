@@ -60,6 +60,9 @@ public class CoursesMain extends AppCompatActivity {
             });
     }
 
+    /**
+     * Creates List of Courses
+     */
     private void CreateItemList(){
         List<CourseLog> courses = mDao.getCoursesByUserID(UserId);
         for(CourseLog c : courses){
@@ -67,6 +70,9 @@ public class CoursesMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * Creates Recycler View
+     */
     private void RecyclerViewBuild(){
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);

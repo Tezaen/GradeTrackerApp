@@ -50,20 +50,28 @@ public class EditCourse extends AppCompatActivity {
                 }
             });
 
+
+            /**
+             * This button edits course details based on what was entered in the text fields
+             */
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     CourseLog log2 = mDao.getCourseByNameAndId(cName.getText().toString(), UserId);
                     newLog.setInstructor(profName.getText().toString());
                     newLog.setCourseName(cName.getText().toString());
-                    //checks if the user did not change the course name
+                    /**
+                     * checks if the user did not change the course name
+                     */
                     if(log.getCourseName().equals(newLog.getCourseName())){
                         mDao.update(log);
                         Intent intent = new Intent(EditCourse.this,CoursesMain.class);
                         intent.putExtra(Menu.TAG, UserId);
                         startActivity(intent);
                     }else{
-                        //User changes course name
+                        /**
+                         * User changes course name
+                         */
                         if(log2 == null){
                             List<AssignmentLog> updateAssignments = mDao.getAssignmentByCourseName(log.getCourseName(),UserId);
                             for(AssignmentLog a : updateAssignments){

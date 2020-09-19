@@ -65,7 +65,9 @@ public class CreateAccount extends AppCompatActivity {
         });
     }
 
-    //Assigns the Text and Buttons
+    /**
+     * Assigns the Text and Buttons
+     */
     private void wiredUp() {
         usernameText = findViewById(R.id.usernameTxt);
         passwordText = findViewById(R.id.passwordTxt);
@@ -73,7 +75,9 @@ public class CreateAccount extends AppCompatActivity {
         backBtn = findViewById(R.id.backToMainBtn);
     }
 
-    //gives access to the DAO commands for querying
+    /**
+     * gives access to the DAO commands for querying
+     */
     private void getDb() {
         mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -82,7 +86,11 @@ public class CreateAccount extends AppCompatActivity {
                 .getGradeTrackerDAO();
     }
 
-    //checks if username is valid/not taken
+    /**
+     * checks if username is valid/not taken
+     * @param name
+     * @return
+     */
     private boolean checkValidUsername(String name) {
         if (mDao.getUserByUsername(name) == null) {
             return true;
@@ -90,7 +98,11 @@ public class CreateAccount extends AppCompatActivity {
         return false;
     }
 
-    //checks if password is valid
+    /**
+     * checks if password is valid
+     * @param pw
+     * @return
+     */
     private boolean checkValidPW(String pw) {
         if (pw.length() < 3) {
             return false;

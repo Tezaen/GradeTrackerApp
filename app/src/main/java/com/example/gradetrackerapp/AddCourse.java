@@ -43,9 +43,13 @@ public class AddCourse extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //check to see if the editTexts are empty
+                /**
+                 * check to see if the editTexts are empty
+                 */
                 CourseLog log = mDao.getCourseByNameAndId(cName.getText().toString(), UserId);
-                //checks to see that user can't enter a similar course name into the DB
+                /**
+                 * checks to see that user can't enter a similar course name into the DB
+                 */
                 if(log == null){
                     CourseLog courseLog = new CourseLog(cName.getText().toString(), profName.getText().toString(), UserId);
                     mDao.insert(courseLog);

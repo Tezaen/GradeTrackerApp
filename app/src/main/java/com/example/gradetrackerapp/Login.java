@@ -30,14 +30,18 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getDb();
-        //adding input text and login button into initiated variables
+        /**
+         * adding input text and login button into initiated variables
+         */
+
         username = findViewById(R.id.usernameTxt);
         password = findViewById(R.id.passwordTxt);
         mButton1 = findViewById(R.id.button1);
 
-        // set listener to login button
-        // test to see if this works
-        // when clicked will check if account exists
+         /** set listener to login button
+         * test to see if this works
+         *when clicked will check if account exists
+         */
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +64,10 @@ public class Login extends AppCompatActivity {
         return intent;
     }
 
+    /**
+     * Builds the Room DB for DAO
+     */
+
     private void getDb() {
         mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
@@ -68,7 +76,12 @@ public class Login extends AppCompatActivity {
                 .getGradeTrackerDAO();
     }
 
-    // method that checks if password/username is correct
+    /**
+     * method that checks if password/username is correct
+     * @param un
+     * @param pw
+     * @return
+     */
     public boolean checkCredentials(String un, String pw) {
         boolean validUn = checkValidUsername(un);
         boolean validPw = checkValidPassword(pw);
@@ -78,14 +91,22 @@ public class Login extends AppCompatActivity {
         return validPw && validUn;
     }
 
-    // Specifically checks if username exist
+    /**
+     * Specifically checks if username exist
+     * @param un
+     * @return
+     */
     private boolean checkValidUsername(String un) {
         mUser = mDao.getUserByUsername(un);
 
         return mUser != null;
     }
 
-    // Specifically check if password is associated with username given
+    /**
+     * Specifically check if password is associated with username given
+     * @param pw
+     * @return
+     */
     private boolean checkValidPassword(String pw) {
         if (mUser != null) {
             return mUser.getPassword().equals(pw);
@@ -93,7 +114,11 @@ public class Login extends AppCompatActivity {
         return false;
     }
 
-    // pop up toast according to what correct/incorrect inputs were made
+    /**
+     * pop up toast according to what correct/incorrect inputs were made
+     * @param bool_un
+     * @param bool_pw
+     */
     private void toastMaker(boolean bool_un, boolean bool_pw) {
         if (bool_un && bool_pw) {
             Toast.makeText(this, "Log In Successful", Toast.LENGTH_LONG).show();

@@ -24,6 +24,9 @@ public class Menu extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
 
+        /**
+         * link to course page when clicked
+         */
         Cbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +35,9 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //link to assignment page
+        /**
+         * link to assignment page when clicked
+         */
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +46,9 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //link to grades page
+        /**
+         * link to grades page when clicked
+         */
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +59,13 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * Intent Factory to arrive at this page
+     * @param c
+     * @param userId
+     * @return
+     */
     public static Intent newIntent(Context c, int userId) {
         Intent intent = new Intent(c, Menu.class);
         intent.putExtra(TAG, userId);
