@@ -61,6 +61,9 @@ public class AssignmentMain extends AppCompatActivity {
         });
     }
 
+    /**
+     * Creates List of Assignments
+     */
     private void CreateItemList(){
         List<AssignmentLog> assignmentLogs = mDao.getAssignmentByUser(UserId);
         for(AssignmentLog c : assignmentLogs){
@@ -68,6 +71,9 @@ public class AssignmentMain extends AppCompatActivity {
         }
     }
 
+    /**
+     * Creates Recycler View
+     */
     private void RecyclerViewBuild(){
         mRecyclerView = findViewById(R.id.recyclerView2);
         mRecyclerView.setHasFixedSize(true);
