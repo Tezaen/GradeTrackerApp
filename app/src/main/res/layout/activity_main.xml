@@ -44,7 +44,6 @@
         android:layout_height="64dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/custom_button"
-        android:fontFamily="@font/ubuntu_bold"
         android:text="@string/createAcc"
         android:textAllCaps="false"
         android:textColor="#ffffff"
@@ -52,5 +51,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
+
+    <TextView
+        android:id="@+id/textViewFT"
+        android:layout_width="188dp"
+        android:layout_height="73dp"
+        android:fontFamily="@font/ubuntu_bold"
+        android:gravity="center"
+        android:text="@string/footer"
+        android:textColor="#27A6A6"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccBtn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
