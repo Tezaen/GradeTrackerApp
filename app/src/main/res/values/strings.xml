@@ -21,5 +21,6 @@
     <string name="editAssignment">Edit Assignment</string>
     <string name="AssignmentName">Assignment Name</string>
     <string name="Grade">Grade</string>
+    <string name="footer">©2020 CST438 Team C</string>
 
 </resources>

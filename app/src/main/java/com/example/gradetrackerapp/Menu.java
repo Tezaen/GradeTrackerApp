@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class Menu extends AppCompatActivity {
     public static final String TAG = "MENU";
@@ -14,6 +15,7 @@ public class Menu extends AppCompatActivity {
     private Button button2;
     private Button button3;
     private int UserId;
+    TextView footer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,7 @@ public class Menu extends AppCompatActivity {
         Cbutton = findViewById(R.id.Cbutton);
         button2 = findViewById(R.id.button2);
         button3 = findViewById(R.id.button3);
+        footer = findViewById(R.id.textViewFT2);
 
         /**
          * link to course page when clicked

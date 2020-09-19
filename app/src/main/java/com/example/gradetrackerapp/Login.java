@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -42,6 +41,7 @@ public class Login extends AppCompatActivity {
          * test to see if this works
          *when clicked will check if account exists
          */
+
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +71,6 @@ public class Login extends AppCompatActivity {
     private void getDb() {
         mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
-                .fallbackToDestructiveMigration()
                 .build()
                 .getGradeTrackerDAO();
     }
@@ -82,6 +81,7 @@ public class Login extends AppCompatActivity {
      * @param pw
      * @return
      */
+
     public boolean checkCredentials(String un, String pw) {
         boolean validUn = checkValidUsername(un);
         boolean validPw = checkValidPassword(pw);
