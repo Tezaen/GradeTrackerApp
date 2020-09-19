@@ -30,14 +30,18 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getDb();
-        //adding input text and login button into initiated variables
+        /**
+         * adding input text and login button into initiated variables
+         */
+
         username = findViewById(R.id.usernameTxt);
         password = findViewById(R.id.passwordTxt);
         mButton1 = findViewById(R.id.button1);
 
-        // set listener to login button
-        // test to see if this works
-        // when clicked will check if account exists
+         /** set listener to login button
+         * test to see if this works
+         *when clicked will check if account exists
+         */
         mButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
