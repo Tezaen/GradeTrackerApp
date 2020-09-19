@@ -37,3 +37,10 @@ Required Functions Completed:
 > This iteration, I created unit tests that tested the functionalities of the UserLog, CourseLog, and AssignmentLog objects in the Database.
 > Grade, Category, and Enrollment didn't seem to fit in with what we had so we let it go, I also worked on the Grades Activity
 > It calculated the average of all scores in the course that it displays.
+
+
+
+
+## Link to video:
+
+## Extras:
