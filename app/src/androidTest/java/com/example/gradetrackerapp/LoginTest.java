@@ -62,6 +62,4 @@ public class LoginTest {
         //assertFalse(Login.checkCredentials(inputUsername,inputPassword));
 
     }
-
-
 }
