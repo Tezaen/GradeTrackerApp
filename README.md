@@ -1,2 +1,2 @@
-# GradeTrackerApp
+## GradeTrackerApp
 
