@@ -49,6 +49,11 @@ Required Functions Completed:
 **User Story:** Design by Yvonne
 > I implemented a new button and color scheme design on all the displayed activities
 
+###Iteration 4
+
+**Courses/Assignment
+> This iteration, I created the add/edit/delete for the assignments and courses which allows the user to interact with the app. Everytime the user logs in they have their own unique course and assignments shown to them when they interact with the app. Everytime the user edits a course the assignments under that course get changed to the new course that was edited. As well when a user deletes a course every assignment under that course is removed from the database. The user can eddit their assignment name, grade, but cannot edit the course name when editing the assignment.
+
 
 
 
