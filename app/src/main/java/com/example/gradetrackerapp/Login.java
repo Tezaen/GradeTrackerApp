@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,6 +63,7 @@ public class Login extends AppCompatActivity {
     private void getDb() {
         mDao = Room.databaseBuilder(this, AppDatabase.class, AppDatabase.DB_NAME)
                 .allowMainThreadQueries()
+                .fallbackToDestructiveMigration()
                 .build()
                 .getGradeTrackerDAO();
     }
@@ -79,6 +81,7 @@ public class Login extends AppCompatActivity {
     // Specifically checks if username exist
     private boolean checkValidUsername(String un) {
         mUser = mDao.getUserByUsername(un);
+
         return mUser != null;
     }
 

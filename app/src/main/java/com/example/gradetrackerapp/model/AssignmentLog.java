@@ -9,23 +9,33 @@ import com.example.gradetrackerapp.model.db.AppDatabase;
 public class AssignmentLog {
     @PrimaryKey(autoGenerate = true)
     private int mAssignmentId;
-
+    private int mUserId;
     private String mAssignmentName;
-    private int mAssignmentMaxScore;
     private int mAssignmentScore;
-    private String mDetails;
-    private String mAssignedDate;
-    private int mCourseId;
-    private String mDueDate;
+    private String mCourseName;
 
-    public AssignmentLog(String mAssignmentName, int mAssignmentMaxScore, int mAssignmentScore, String mDetails, String mAssignedDate, int mCourseId, String mDueDate) {
+    public AssignmentLog(String mCourseName, String mAssignmentName, int mAssignmentScore, int userId) {
         this.mAssignmentName = mAssignmentName;
-        this.mAssignmentMaxScore = mAssignmentMaxScore;
         this.mAssignmentScore = mAssignmentScore;
-        this.mDetails = mDetails;
-        this.mAssignedDate = mAssignedDate;
-        this.mCourseId = mCourseId;
-        this.mDueDate = mDueDate;
+        this.mCourseName = mCourseName;
+        this.mUserId = userId;
+
+    }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
+    }
+
+    public String getCourseName() {
+        return mCourseName;
+    }
+
+    public void setCourseName(String courseName) {
+        mCourseName = courseName;
     }
 
     public int getAssignmentId() {
@@ -44,14 +54,6 @@ public class AssignmentLog {
         this.mAssignmentName = mAssignmentName;
     }
 
-    public int getAssignmentMaxScore() {
-        return mAssignmentMaxScore;
-    }
-
-    public void setAssignmentMaxScore(int mAssignmentMaxScore) {
-        this.mAssignmentMaxScore = mAssignmentMaxScore;
-    }
-
     public int getAssignmentScore() {
         return mAssignmentScore;
     }
@@ -60,35 +62,4 @@ public class AssignmentLog {
         this.mAssignmentScore = mAssignmentScore;
     }
 
-    public String getDetails() {
-        return mDetails;
-    }
-
-    public void setDetails(String mDetails) {
-        this.mDetails = mDetails;
-    }
-
-    public String getAssignedDate() {
-        return mAssignedDate;
-    }
-
-    public void setAssignedDate(String mAssignedDate) {
-        this.mAssignedDate = mAssignedDate;
-    }
-
-    public int getCourseId() {
-        return mCourseId;
-    }
-
-    public void setCourseId(int mCourseId) {
-        this.mCourseId = mCourseId;
-    }
-
-    public String getDueDate() {
-        return mDueDate;
-    }
-
-    public void setDueDate(String mDueDate) {
-        this.mDueDate = mDueDate;
-    }
 }
